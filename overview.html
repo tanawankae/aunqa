@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ภาพรวมผลการประเมิน AUN-QA วิทยาลัยพยาบาลบรมราชชนนี ชัยนาท">
+    <title>AUN-QA Dashboard - ภาพรวม</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <div class="nav-container">
+        <div class="nav-menu nav-menu-with-logo">
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="nav-items-group">
+                <a href="index.html" class="nav-item active">🏠 หน้าหลัก</a>
+                <a href="overview.html" class="nav-item">📊 ภาพรวม</a>
+                <a href="subcriteria.html" class="nav-item">📋 หัวข้อย่อย</a>
+                <a href="trends.html" class="nav-item">📈 แนวโน้ม</a>
+                <a href="analysis.html" class="nav-item">🔍 การวิเคราะห์</a>
+                <a href="recommendations.html" class="nav-item">💡 ข้อเสนอแนะ</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1> AUN-QA Analysis Dashboard</h1>
+            <h2>วิทยาลัยพยาบาลบรมราชชนนี ชัยนาท | ระบบวิเคราะห์ผลการประเมิน ปี 2565-2567</h2>
+        </div>
+
+
+        <!-- ภาพรวมผลการประเมิน - Full Width -->
+        <div class="card overview-full-card">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <div class="card-title">ภาพรวมผลการประเมิน AUN-QA</div>
+            </div>
+
+            <!-- Main Statistics Grid -->
+            <div class="overview-main-stats">
+                <div class="stat-item-large">
+                    <div class="stat-value-large">8</div>
+                    <div class="stat-label-large">เกณฑ์หลัก</div>
+                    <div class="stat-description">AUN-QA Criteria</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-value-large">3.00</div>
+                    <div class="stat-label-large">คะแนน 2565</div>
+                    <div class="stat-description">ปีฐาน</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-value-large">3.63</div>
+                    <div class="stat-label-large">คะแนน 2566</div>
+                    <div class="stat-description">ปีที่ 1</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-value-large">3.63</div>
+                    <div class="stat-label-large">คะแนน 2567</div>
+                    <div class="stat-description">ปีปัจจุบัน</div>
+                </div>
+                <div class="stat-item-large highlight">
+                    <div class="stat-value-large">+0.63</div>
+                    <div class="stat-label-large">การเติบโต</div>
+                    <div class="stat-description">3 ปี (+21%)</div>
+                </div>
+                <div class="stat-item-large highlight">
+                    <div class="stat-value-large">5/8</div>
+                    <div class="stat-label-large">เกณฑ์ระดับ 4</div>
+                    <div class="stat-description">ความเป็นเลิศ</div>
+                </div>
+            </div>
+
+            <!-- Performance Overview -->
+            <div class="performance-overview">
+                <div class="performance-section excellent">
+                    <h4>🏆 จุดแข็ง (คะแนน 4)</h4>
+                    <div class="criteria-tags">
+                        <span class="criteria-tag">C1: Expected Learning Outcomes</span>
+                        <span class="criteria-tag">C2: Programme Structure</span>
+                        <span class="criteria-tag">C4: Student Assessment</span>
+                        <span class="criteria-tag">C5: Academic Staff</span>
+                        <span class="criteria-tag">C7: Facilities</span>
+                    </div>
+                </div>
+
+                <div class="performance-section warning">
+                    <h4>⚠️ จุดที่ต้องพัฒนา (คะแนน 3)</h4>
+                    <div class="criteria-tags">
+                        <span class="criteria-tag">C3: Teaching & Learning</span>
+                        <span class="criteria-tag">C6: Student Support</span>
+                        <span class="criteria-tag">C8: Output & Outcomes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Insights -->
+            <div class="key-insights-grid">
+                <div class="insight-box success">
+                    <div class="insight-icon">📈</div>
+                    <div class="insight-text">
+                        <h5>การพัฒนาโดยรวม</h5>
+                        <p>เพิ่มขึ้น <strong>0.63 คะแนน</strong> ในปี 2566 และรักษาระดับในปี 2567</p>
+                    </div>
+                </div>
+
+                <div class="insight-box warning">
+                    <div class="insight-icon">⚡</div>
+                    <div class="insight-text">
+                        <h5>ความเร็วการพัฒนา</h5>
+                        <p>ปี 2566→2567: <strong>0.00 คะแนน/ปี</strong> (ชะลอตัว)</p>
+                    </div>
+                </div>
+
+                <div class="insight-box info">
+                    <div class="insight-icon">🎯</div>
+                    <div class="insight-text">
+                        <h5>Gap สู่ความเป็นเลิศ</h5>
+                        <p>ต้องปรับปรุง <strong>3 เกณฑ์</strong> เพื่อให้ได้ 4 คะแนนทุกเกณฑ์</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid-2">
+            <!-- กราฟแนวโน้ม -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📈</div>
+                    <div class="card-title">แนวโน้มคะแนนเฉลี่ย</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- กราฟเปรียบเทียบ -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">เปรียบเทียบคะแนนแต่ละเกณฑ์</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- จุดที่ต้องพัฒนา - Detailed List -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">รายละเอียดจุดที่ต้องพัฒนา</div>
+            </div>
+            <ul class="criteria-list">
+                <li class="criteria-item">
+                    <div class="criteria-number">3</div>
+                    <div class="criteria-info">
+                        <div class="criteria-name">Teaching and Learning Approach</div>
+                        <div class="criteria-description">การจัดการเรียนการสอนยังไม่หลากหลาย ต้องพัฒนาเทคโนโลยีและ
+                            Active Learning</div>
+                        <div class="criteria-scores">
+                            <span class="score-badge score-good">3.0</span>
+                            <span style="color: #e74c3c; font-size: 0.8rem;">ไม่เปลี่ยนแปลง 3 ปี</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="criteria-item">
+                    <div class="criteria-number">6</div>
+                    <div class="criteria-info">
+                        <div class="criteria-name">Student Support Services</div>
+                        <div class="criteria-description">บริการสนับสนุนนักศึกษายังไม่ครอบคลุม
+                            ต้องปรับปรุงระบบให้คำปรึกษา</div>
+                        <div class="criteria-scores">
+                            <span class="score-badge score-good">3.0</span>
+                            <span style="color: #e74c3c; font-size: 0.8rem;">ไม่เปลี่ยนแปลง 3 ปี</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="criteria-item">
+                    <div class="criteria-number">8</div>
+                    <div class="criteria-info">
+                        <div class="criteria-name">Output and Outcomes</div>
+                        <div class="criteria-description">การติดตามผลบัณฑิตยังไม่เป็นระบบ ต้องพัฒนาระบบติดตามต่อเนื่อง
+                        </div>
+                        <div class="criteria-scores">
+                            <span class="score-badge score-good">3.0</span>
+                            <span class="improvement-badge">+1.0</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Heatmap -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔥</div>
+                <div class="card-title">Heat Map คะแนนตามเกณฑ์</div>
+            </div>
+            <div class="heatmap-grid">
+                <div class="heatmap-header">เกณฑ์</div>
+                <div class="heatmap-header">2565</div>
+                <div class="heatmap-header">2566</div>
+                <div class="heatmap-header">2567</div>
+
+                <div class="heatmap-label">Criterion 1<br>Expected Learning Outcomes</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-4">4</div>
+                <div class="heatmap-cell score-4">4</div>
+
+                <div class="heatmap-label">Criterion 2<br>Programme Structure</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-4">4</div>
+                <div class="heatmap-cell score-4">4</div>
+
+                <div class="heatmap-label">Criterion 3<br>Teaching & Learning</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-3">3</div>
+
+                <div class="heatmap-label">Criterion 4<br>Student Assessment</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-4">4</div>
+                <div class="heatmap-cell score-4">4</div>
+
+                <div class="heatmap-label">Criterion 5<br>Academic Staff</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-4">4</div>
+                <div class="heatmap-cell score-4">4</div>
+
+                <div class="heatmap-label">Criterion 6<br>Student Support</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-3">3</div>
+
+                <div class="heatmap-label">Criterion 7<br>Facilities</div>
+                <div class="heatmap-cell score-4">4</div>
+                <div class="heatmap-cell score-4">4</div>
+                <div class="heatmap-cell score-4">4</div>
+
+                <div class="heatmap-label">Criterion 8<br>Output & Outcomes</div>
+                <div class="heatmap-cell score-2">2</div>
+                <div class="heatmap-cell score-3">3</div>
+                <div class="heatmap-cell score-3">3</div>
+            </div>
+        </div>
+
+        <!-- สถิติเชิงลึก -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <div class="card-title">สถิติเชิงลึก</div>
+            </div>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 25px;">
+                <div class="stat-item">
+                    <div class="stat-value" style="color: #27ae60;">62.5%</div>
+                    <div class="stat-label">เกณฑ์ที่พัฒนาสำเร็จ (5/8)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" style="color: #e74c3c;">25%</div>
+                    <div class="stat-label">เกณฑ์ที่ไม่มีการพัฒนา (2/8)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" style="color: #f39c12;">12.5%</div>
+                    <div class="stat-label">เกณฑ์ที่พัฒนาแล้วหยุด (1/8)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" style="color: #3498db;">0.21</div>
+                    <div class="stat-label">อัตราการพัฒนาเฉลี่ย/ปี</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- การวิเคราะห์เชิงลึกจากข้อมูลจริง -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔍</div>
+                <div class="card-title">การวิเคราะห์เชิงลึกจากข้อมูล</div>
+            </div>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 25px;">
+                <!-- Gap Analysis -->
+                <div
+                    style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 4px solid #e74c3c; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                    <h4
+                        style="font-family: 'Kanit', sans-serif; color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #ecf0f1;">
+                        📊 Gap to Excellence (เป้าหมาย 4 คะแนน)</h4>
+                    <div style="font-family: 'Sarabun', sans-serif;">
+                        <div style="margin-bottom: 12px; padding: 8px 0;"><strong>Criterion 3:</strong> ต้องปรับปรุง 1.0
+                            คะแนน</div>
+                        <div style="margin-bottom: 12px; padding: 8px 0;"><strong>Criterion 6:</strong> ต้องปรับปรุง 1.0
+                            คะแนน</div>
+                        <div style="margin-bottom: 12px; padding: 8px 0;"><strong>Criterion 8:</strong> ต้องปรับปรุง 1.0
+                            คะแนน</div>
+                        <div
+                            style="color: #27ae60; font-weight: 600; margin-top: 15px; padding: 10px; background: rgba(39, 174, 96, 0.1); border-radius: 8px;">
+                            Gap รวม: 3.0 คะแนน (37.5% ของเป้าหมาย)</div>
+                    </div>
+                </div>
+
+                <!-- Performance Velocity -->
+                <div
+                    style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 4px solid #f39c12; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                    <h4
+                        style="font-family: 'Kanit', sans-serif; color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #ecf0f1;">
+                        ⚡ ความเร็วการพัฒนา</h4>
+                    <div style="font-family: 'Sarabun', sans-serif;">
+                        <div style="margin-bottom: 12px; padding: 8px 0;"><strong>ปี 2565→2566:</strong> +0.63 คะแนน/ปี
+                        </div>
+                        <div style="margin-bottom: 12px; padding: 8px 0;"><strong>ปี 2566→2567:</strong> 0.00 คะแนน/ปี
+                        </div>
+                        <div
+                            style="color: #e74c3c; font-weight: 600; margin-top: 15px; padding: 10px; background: rgba(231, 76, 60, 0.1); border-radius: 8px;">
+                            ⚠️ การพัฒนาชะลอตัวอย่างสิ้นเชิง</div>
+                        <div style="margin-top: 12px; font-size: 0.95rem; padding: 8px 0;">
+                            ต้องเร่งกลยุทธ์ใหม่ให้มีความต่อเนื่อง</div>
+                    </div>
+                </div>
+
+                <!-- Stability Analysis -->
+                <div
+                    style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 4px solid #27ae60; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                    <h4
+                        style="font-family: 'Kanit', sans-serif; color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #ecf0f1;">
+                        🛡️ ความมั่นคงของคะแนน</h4>
+                    <div style="font-family: 'Sarabun', sans-serif;">
+                        <div style="margin-bottom: 12px; padding: 8px 0;"><strong>เกณฑ์คงที่ตลอด 3 ปี:</strong> 3 เกณฑ์
+                        </div>
+                        <div style="margin-bottom: 8px; padding: 5px 0;">• Criterion 3: 3-3-3 🔴</div>
+                        <div style="margin-bottom: 8px; padding: 5px 0;">• Criterion 6: 3-3-3 🔴</div>
+                        <div style="margin-bottom: 12px; padding: 5px 0;">• Criterion 7: 4-4-4 🟢</div>
+                        <div
+                            style="color: #e74c3c; font-weight: 600; margin-top: 15px; padding: 10px; background: rgba(231, 76, 60, 0.1); border-radius: 8px;">
+                            37.5% ของเกณฑ์ไม่มีการพัฒนา</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ข้อมูลคะแนน
+        const criteriaData = [
+            { name: 'Expected Learning Outcomes', scores: [3, 4, 4], change: 1 },
+            { name: 'Programme Structure', scores: [3, 4, 4], change: 1 },
+            { name: 'Teaching & Learning', scores: [3, 3, 3], change: 0 },
+            { name: 'Student Assessment', scores: [3, 4, 4], change: 1 },
+            { name: 'Academic Staff', scores: [3, 4, 4], change: 1 },
+            { name: 'Student Support', scores: [3, 3, 3], change: 0 },
+            { name: 'Facilities', scores: [4, 4, 4], change: 0 },
+            { name: 'Output & Outcomes', scores: [2, 3, 3], change: 1 }
+        ];
+
+        // สีธีมน้ำเงิน
+        const blueTheme = {
+            primary: '#4A90E2',
+            secondary: '#357ABD',
+            accent: '#5BA0F2',
+            light: '#E3F2FD',
+            dark: '#2C3E50',
+            success: '#27ae60',
+            warning: '#f39c12',
+            danger: '#e74c3c'
+        };
+
+        // กราฟแนวโน้มคะแนนเฉลี่ย
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ['2565', '2566', '2567'],
+                datasets: [{
+                    label: 'คะแนนเฉลี่ย',
+                    data: [3.00, 3.63, 3.63],
+                    borderColor: blueTheme.primary,
+                    backgroundColor: blueTheme.light,
+                    borderWidth: 4,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: blueTheme.primary,
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    pointRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: blueTheme.dark,
+                        titleFont: { family: 'Kanit', size: 14, weight: 'bold' },
+                        bodyFont: { family: 'Sarabun', size: 12 },
+                        padding: 10,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 4,
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        },
+                        ticks: {
+                            stepSize: 1,
+                            font: {
+                                family: 'Kanit',
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                family: 'Kanit',
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+
+        // กราฟเปรียบเทียบคะแนน
+        const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(comparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: criteriaData.map((_, i) => `C${i + 1}`),
+                datasets: [
+                    {
+                        label: '2565',
+                        data: criteriaData.map(c => c.scores[0]),
+                        backgroundColor: 'rgba(52, 152, 219, 0.8)',
+                        borderColor: '#3498db',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '2566',
+                        data: criteriaData.map(c => c.scores[1]),
+                        backgroundColor: 'rgba(155, 89, 182, 0.8)',
+                        borderColor: '#9b59b6',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '2567',
+                        data: criteriaData.map(c => c.scores[2]),
+                        backgroundColor: 'rgba(231, 76, 60, 0.8)',
+                        borderColor: '#e74c3c',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            font: {
+                                family: 'Kanit',
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: blueTheme.dark,
+                        titleFont: { family: 'Kanit', size: 14, weight: 'bold' },
+                        bodyFont: { family: 'Sarabun', size: 12 },
+                        padding: 10,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 4,
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        },
+                        ticks: {
+                            stepSize: 1,
+                            font: {
+                                family: 'Kanit',
+                                size: 11,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                family: 'Kanit',
+                                size: 11,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutCubic'
+                }
+            }
+        });
+
+        // เอฟเฟคเคลื่อนไหวเมื่อโหลดหน้า
+        window.addEventListener('load', function () {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="การวิเคราะห์หัวข้อย่อย AUN-QA วิทยาลัยพยาบาลบรมราชชนนี ชัยนาท">
+    <title>AUN-QA Dashboard - หัวข้อย่อย</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <div class="nav-container">
+        <div class="nav-menu nav-menu-with-logo">
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="nav-items-group">
+                <a href="index.html" class="nav-item active">🏠 หน้าหลัก</a>
+                <a href="overview.html" class="nav-item">📊 ภาพรวม</a>
+                <a href="subcriteria.html" class="nav-item">📋 หัวข้อย่อย</a>
+                <a href="trends.html" class="nav-item">📈 แนวโน้ม</a>
+                <a href="analysis.html" class="nav-item">🔍 การวิเคราะห์</a>
+                <a href="recommendations.html" class="nav-item">💡 ข้อเสนอแนะ</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>📋 การวิเคราะห์หัวข้อย่อย (Sub-Criteria Analysis)</h1>
+            <h2>รายละเอียด 53 หัวข้อย่อยของ 8 เกณฑ์หลัก AUN-QA</h2>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-container">
+            <div class="filter-group">
+                <label class="filter-label">เลือกเกณฑ์:</label>
+                <select class="filter-select" id="criterionFilter" onchange="filterSubCriteria()">
+                    <option value="all">ทั้งหมด</option>
+                    <option value="1">Criterion 1: Expected Learning Outcomes</option>
+                    <option value="2">Criterion 2: Programme Structure</option>
+                    <option value="3">Criterion 3: Teaching & Learning</option>
+                    <option value="4">Criterion 4: Student Assessment</option>
+                    <option value="5">Criterion 5: Academic Staff</option>
+                    <option value="6">Criterion 6: Student Support</option>
+                    <option value="7">Criterion 7: Facilities</option>
+                    <option value="8">Criterion 8: Output & Outcomes</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">คะแนนปัจจุบัน:</label>
+                <select class="filter-select" id="scoreFilter" onchange="filterSubCriteria()">
+                    <option value="all">ทุกระดับ</option>
+                    <option value="4">ระดับ 4 (ดีเยี่ยม)</option>
+                    <option value="3">ระดับ 3 (ดี)</option>
+                    <option value="2">ระดับ 2 (ต้องปรับปรุง)</option>
+                    <option value="1">ระดับ 1 (ต้องปรับปรุงมาก)</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">การเปลี่ยนแปลง:</label>
+                <select class="filter-select" id="changeFilter" onchange="filterSubCriteria()">
+                    <option value="all">ทุกประเภท</option>
+                    <option value="improved">มีการพัฒนา (+)</option>
+                    <option value="declined">ลดลง (-)</option>
+                    <option value="static">ไม่เปลี่ยนแปลง (=)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Summary Statistics -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <div class="card-title">สรุปสถิติหัวข้อย่อย</div>
+            </div>
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <div class="stat-value">53</div>
+                    <div class="stat-label">หัวข้อย่อยทั้งหมด</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="level4Count">0</div>
+                    <div class="stat-label">ระดับ 4 (ดีเยี่ยม)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="level3Count">0</div>
+                    <div class="stat-label">ระดับ 3 (ดี)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="level2Count">0</div>
+                    <div class="stat-label">ระดับ 2 (ปรับปรุง)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="improvedCount">0</div>
+                    <div class="stat-label">มีการพัฒนา</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="staticCount">0</div>
+                    <div class="stat-label">ไม่เปลี่ยนแปลง</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Charts -->
+        <div class="dashboard-grid-2">
+            <!-- Score Distribution Chart -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📈</div>
+                    <div class="card-title">การกระจายตัวของคะแนนหัวข้อย่อย</div>
+                </div>
+                <div class="chart-container chart-small">
+                    <canvas id="scoreDistributionChart"></canvas>
+                </div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <div style="font-family: 'Sarabun', sans-serif; font-size: 0.9rem; text-align: center;">
+                        <strong>การแปลผล:</strong> แสดงจำนวนหัวข้อย่อยในแต่ละระดับคะแนนปัจจุบัน
+                    </div>
+                </div>
+            </div>
+
+            <!-- Improvement Trend Chart -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">แนวโน้มการพัฒนาหัวข้อย่อย</div>
+                </div>
+                <div class="chart-container chart-small">
+                    <canvas id="improvementTrendChart"></canvas>
+                </div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <div style="font-family: 'Sarabun', sans-serif; font-size: 0.9rem; text-align: center;">
+                        <strong>การแปลผล:</strong> แสดงการเปลี่ยนแปลงคะแนนเฉลี่ยของหัวข้อย่อยในแต่ละเกณฑ์
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Criterion Comparison -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔄</div>
+                <div class="card-title">เปรียบเทียบคะแนนเฉลี่ยหัวข้อย่อยระหว่างเกณฑ์</div>
+            </div>
+            <div class="chart-container" style="height: 450px; margin: 25px 0;">
+                <canvas id="criterionComparisonChart"></canvas>
+            </div>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-top: 20px;">
+                <div style="font-family: 'Sarabun', sans-serif; line-height: 1.6;">
+                    <strong>การแปลผล:</strong> แสดงคะแนนเฉลี่ยของหัวข้อย่อยภายในแต่ละเกณฑ์
+                    ช่วยระบุเกณฑ์ที่มีความสม่ำเสมอและเกณฑ์ที่ต้องพัฒนา<br>
+                    <strong>เป้าหมาย:</strong> ทุกเกณฑ์ควรมีคะแนนเฉลี่ย ≥ 3.5
+                    และมีความแตกต่างระหว่างหัวข้อย่อยน้อยที่สุด
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Heatmap -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🌡️</div>
+                <div class="card-title">Heatmap แสดงประสิทธิภาพหัวข้อย่อยแต่ละเกณฑ์</div>
+            </div>
+            <div id="performanceHeatmap" style="margin: 25px 0;">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: #27ae60; border-radius: 4px;"></div>
+                    <span style="font-family: 'Sarabun', sans-serif; font-size: 0.9rem;">ระดับ 4 (ดีเยี่ยม)</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: #f39c12; border-radius: 4px;"></div>
+                    <span style="font-family: 'Sarabun', sans-serif; font-size: 0.9rem;">ระดับ 3 (ดี)</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: #e74c3c; border-radius: 4px;"></div>
+                    <span style="font-family: 'Sarabun', sans-serif; font-size: 0.9rem;">ระดับ 2-1 (ต้องปรับปรุง)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sub-criteria Details -->
+        <div id="subCriteriaContainer">
+            <!-- Will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Complete sub-criteria data
+        const aunqaData = [
+            {
+                number: 1,
+                name: "Expected Learning Outcomes",
+                scores: [3, 4, 4],
+                subCriteria: [
+                    { number: "1.1", description: "The programme to show that the intended learning outcomes are developed through consultation with stakeholders", scores: [3, 3, 3] },
+                    { number: "1.2", description: "The programme to show that the intended learning outcomes are aligned with the vision and mission", scores: [3, 3, 3] },
+                    { number: "1.3", description: "The programme to show that the intended learning outcomes address the needs of employers", scores: [4, 4, 4] },
+                    { number: "1.4", description: "The programme to show that the intended learning outcomes are communicated to students", scores: [3, 4, 4] },
+                    { number: "1.5", description: "The programme to show that the intended learning outcomes are reviewed periodically", scores: [2, 4, 4] }
+                ]
+            },
+            {
+                number: 2,
+                name: "Programme Structure and Content",
+                scores: [3, 4, 4],
+                subCriteria: [
+                    { number: "2.1", description: "The curriculum is designed to achieve the intended learning outcomes", scores: [3, 4, 4] },
+                    { number: "2.2", description: "The curriculum incorporates current and relevant knowledge", scores: [3, 4, 4] },
+                    { number: "2.3", description: "The curriculum is structured to provide logical progression", scores: [3, 4, 4] },
+                    { number: "2.4", description: "The curriculum provides adequate practical training", scores: [3, 4, 4] },
+                    { number: "2.5", description: "The curriculum includes appropriate thesis/project work", scores: [3, 3, 3] },
+                    { number: "2.6", description: "The curriculum provides international perspective", scores: [2, 3, 4] },
+                    { number: "2.7", description: "The curriculum is benchmarked with good practices", scores: [3, 4, 4] }
+                ]
+            },
+            {
+                number: 3,
+                name: "Teaching and Learning Approach",
+                scores: [3, 3, 3],
+                subCriteria: [
+                    { number: "3.1", description: "The teaching and learning activities enable students to achieve the learning outcomes", scores: [3, 3, 3] },
+                    { number: "3.2", description: "The teaching and learning activities enhance student engagement", scores: [3, 3, 3] },
+                    { number: "3.3", description: "The teaching and learning activities cater to different learning styles", scores: [3, 3, 3] },
+                    { number: "3.4", description: "The teaching and learning activities are innovative", scores: [2, 2, 3] },
+                    { number: "3.5", description: "The teaching and learning activities promote critical thinking", scores: [3, 3, 3] },
+                    { number: "3.6", description: "The teaching and learning activities promote collaborative learning", scores: [3, 3, 2] }
+                ]
+            },
+            {
+                number: 4,
+                name: "Student Assessment",
+                scores: [3, 4, 4],
+                subCriteria: [
+                    { number: "4.1", description: "The assessment methods and criteria align with learning outcomes", scores: [3, 4, 4] },
+                    { number: "4.2", description: "The assessment methods are appropriate and effective", scores: [3, 4, 4] },
+                    { number: "4.3", description: "Assessment criteria and methods are communicated to students", scores: [3, 4, 4] },
+                    { number: "4.4", description: "Feedback from assessments are timely and constructive", scores: [3, 4, 4] },
+                    { number: "4.5", description: "Assessment results are used to improve teaching and learning", scores: [3, 3, 4] },
+                    { number: "4.6", description: "Appeals and academic regulations are clear and fair", scores: [3, 4, 4] },
+                    { number: "4.7", description: "External examiners are used appropriately", scores: [2, 4, 4] }
+                ]
+            },
+            {
+                number: 5,
+                name: "Academic Staff",
+                scores: [3, 4, 4],
+                subCriteria: [
+                    { number: "5.1", description: "Academic staff are sufficient in number and appropriately qualified", scores: [3, 4, 4] },
+                    { number: "5.2", description: "Academic staff are competent and qualified to teach in the programme", scores: [3, 4, 4] },
+                    { number: "5.3", description: "The programme has academic leadership to ensure effective teaching", scores: [3, 4, 4] },
+                    { number: "5.4", description: "Academic staff are committed to improving quality", scores: [3, 4, 4] },
+                    { number: "5.5", description: "Academic staff engage in research and scholarly activities", scores: [2, 3, 4] },
+                    { number: "5.6", description: "Academic staff receive adequate support for professional development", scores: [3, 4, 4] },
+                    { number: "5.7", description: "The performance of academic staff is regularly reviewed", scores: [3, 4, 4] },
+                    { number: "5.8", description: "Academic staff are recognized and rewarded for good performance", scores: [3, 4, 4] }
+                ]
+            },
+            {
+                number: 6,
+                name: "Student Support Services",
+                scores: [3, 3, 3],
+                subCriteria: [
+                    { number: "6.1", description: "The programme provides adequate student support services", scores: [3, 3, 3] },
+                    { number: "6.2", description: "Academic advising and counseling are available", scores: [3, 3, 3] },
+                    { number: "6.3", description: "The programme provides financial assistance to students", scores: [3, 3, 3] },
+                    { number: "6.4", description: "Student activities promote personal development", scores: [3, 3, 3] },
+                    { number: "6.5", description: "Career guidance and placement services are available", scores: [2, 3, 3] },
+                    { number: "6.6", description: "Health and welfare services are available", scores: [3, 3, 3] }
+                ]
+            },
+            {
+                number: 7,
+                name: "Facilities and Infrastructure",
+                scores: [4, 4, 4],
+                subCriteria: [
+                    { number: "7.1", description: "Classrooms are adequate and conducive to learning", scores: [4, 4, 4] },
+                    { number: "7.2", description: "Laboratories are well-equipped and accessible", scores: [4, 4, 4] },
+                    { number: "7.3", description: "The library has adequate resources and services", scores: [4, 4, 4] },
+                    { number: "7.4", description: "IT infrastructure and resources are up-to-date", scores: [4, 4, 4] },
+                    { number: "7.5", description: "Clinical training facilities are appropriate and sufficient", scores: [4, 4, 4] },
+                    { number: "7.6", description: "Student accommodation is adequate", scores: [4, 4, 4] },
+                    { number: "7.7", description: "Recreation and sports facilities are available", scores: [4, 4, 4] },
+                    { number: "7.8", description: "Facilities for disabled students are provided", scores: [3, 4, 4] },
+                    { number: "7.9", description: "Facilities are properly maintained and upgraded", scores: [4, 4, 4] }
+                ]
+            },
+            {
+                number: 8,
+                name: "Output and Outcomes",
+                scores: [2, 3, 3],
+                subCriteria: [
+                    { number: "8.1", description: "Student achievement and academic progress are monitored", scores: [2, 3, 3] },
+                    { number: "8.2", description: "Graduate employment and further study rates are satisfactory", scores: [2, 3, 3] },
+                    { number: "8.3", description: "Stakeholder satisfaction with graduates is documented", scores: [2, 3, 3] },
+                    { number: "8.4", description: "The programme produces quality research and publications", scores: [1, 2, 3] },
+                    { number: "8.5", description: "The programme contributes to the community and society", scores: [2, 3, 3] }
+                ]
+            }
+        ];
+
+        function initializeCharts() {
+            createScoreDistributionChart();
+            createImprovementTrendChart();
+            createCriterionComparisonChart();
+            createPerformanceHeatmap();
+        }
+
+        function createScoreDistributionChart() {
+            const ctx = document.getElementById('scoreDistributionChart').getContext('2d');
+
+            // Count score distribution for all sub-criteria
+            const scoreDistribution = [0, 0, 0, 0]; // scores 1-4
+            aunqaData.forEach(criterion => {
+                criterion.subCriteria.forEach(sub => {
+                    const currentScore = sub.scores[2];
+                    scoreDistribution[currentScore - 1]++;
+                });
+            });
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['ระดับ 1', 'ระดับ 2', 'ระดับ 3', 'ระดับ 4'],
+                    datasets: [{
+                        data: scoreDistribution,
+                        backgroundColor: ['#8e44ad', '#e74c3c', '#f39c12', '#27ae60'],
+                        borderWidth: 3,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: 'Sarabun', size: 12 },
+                                padding: 15
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createImprovementTrendChart() {
+            const ctx = document.getElementById('improvementTrendChart').getContext('2d');
+
+            // Calculate average scores for each criterion over time
+            const criterionAverages = aunqaData.map(criterion => {
+                const yearAverages = [0, 1, 2].map(yearIndex => {
+                    const total = criterion.subCriteria.reduce((sum, sub) => sum + sub.scores[yearIndex], 0);
+                    return total / criterion.subCriteria.length;
+                });
+                return {
+                    name: `C${criterion.number}`,
+                    scores: yearAverages
+                };
+            });
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2565', '2566', '2567'],
+                    datasets: criterionAverages.map((criterion, index) => ({
+                        label: criterion.name,
+                        data: criterion.scores,
+                        borderColor: `hsl(${index * 45}, 70%, 50%)`,
+                        backgroundColor: `hsla(${index * 45}, 70%, 50%, 0.1)`,
+                        tension: 0.4,
+                        borderWidth: 2,
+                        pointRadius: 4
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 4,
+                            ticks: { stepSize: 0.5 }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: 'Sarabun', size: 10 },
+                                usePointStyle: true
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createCriterionComparisonChart() {
+            const ctx = document.getElementById('criterionComparisonChart').getContext('2d');
+
+            // Prepare data for each criterion showing individual sub-criteria scores
+            const datasets = [];
+            const colors = ['#e74c3c', '#f39c12', '#27ae60'];
+            const years = ['2565', '2566', '2567'];
+
+            years.forEach((year, yearIndex) => {
+                const yearData = [];
+                aunqaData.forEach(criterion => {
+                    criterion.subCriteria.forEach(sub => {
+                        yearData.push(sub.scores[yearIndex]);
+                    });
+                });
+
+                datasets.push({
+                    label: year,
+                    data: yearData,
+                    backgroundColor: colors[yearIndex],
+                    borderColor: colors[yearIndex],
+                    borderWidth: 1
+                });
+            });
+
+            // Create labels for x-axis
+            const labels = [];
+            aunqaData.forEach(criterion => {
+                criterion.subCriteria.forEach(sub => {
+                    labels.push(sub.number);
+                });
+            });
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 4,
+                            ticks: { stepSize: 1 }
+                        },
+                        x: {
+                            ticks: {
+                                maxRotation: 45,
+                                font: { size: 10 }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: { family: 'Sarabun', size: 12 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createPerformanceHeatmap() {
+            const container = document.getElementById('performanceHeatmap');
+            let heatmapHtml = '<div class="heatmap-grid" style="grid-template-columns: auto repeat(' +
+                Math.max(...aunqaData.map(c => c.subCriteria.length)) + ', 1fr);">';
+
+            // Header row
+            heatmapHtml += '<div class="heatmap-header">เกณฑ์</div>';
+            const maxSubCriteria = Math.max(...aunqaData.map(c => c.subCriteria.length));
+            for (let i = 1; i <= maxSubCriteria; i++) {
+                heatmapHtml += `<div class="heatmap-header">หัวข้อ ${i}</div>`;
+            }
+
+            // Data rows
+            aunqaData.forEach(criterion => {
+                heatmapHtml += `<div class="heatmap-label">C${criterion.number}: ${criterion.name.substring(0, 20)}...</div>`;
+
+                criterion.subCriteria.forEach(sub => {
+                    const score = sub.scores[2];
+                    heatmapHtml += `<div class="heatmap-cell score-${score}" title="${sub.description}">${score}</div>`;
+                });
+
+                // Fill empty cells if needed
+                for (let i = criterion.subCriteria.length; i < maxSubCriteria; i++) {
+                    heatmapHtml += '<div class="heatmap-cell" style="background: #f8f9fa; color: #ccc;">-</div>';
+                }
+            });
+
+            heatmapHtml += '</div>';
+            container.innerHTML = heatmapHtml;
+        }
+
+        function getScoreClass(score) {
+            if (score >= 4) return 'excellent';
+            if (score >= 3) return 'good';
+            if (score >= 2) return 'poor';
+            return 'poor';
+        }
+
+        function renderSubCriteria() {
+            const container = document.getElementById('subCriteriaContainer');
+            const criterionFilter = document.getElementById('criterionFilter').value;
+            const scoreFilter = document.getElementById('scoreFilter').value;
+            const changeFilter = document.getElementById('changeFilter').value;
+
+            container.innerHTML = '';
+
+            let level4Count = 0, level3Count = 0, level2Count = 0, improvedCount = 0, staticCount = 0;
+
+            aunqaData.forEach(criterion => {
+                if (criterionFilter !== 'all' && criterion.number.toString() !== criterionFilter) {
+                    return;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                let subCriteriaHtml = '';
+                let hasVisibleSubCriteria = false;
+
+                criterion.subCriteria.forEach(sub => {
+                    const change = sub.scores[2] - sub.scores[0];
+                    const currentScore = sub.scores[2];
+
+                    // Apply filters
+                    if (scoreFilter !== 'all' && currentScore.toString() !== scoreFilter) return;
+                    if (changeFilter !== 'all') {
+                        if (changeFilter === 'improved' && change <= 0) return;
+                        if (changeFilter === 'declined' && change >= 0) return;
+                        if (changeFilter === 'static' && change !== 0) return;
+                    }
+
+                    hasVisibleSubCriteria = true;
+
+                    // Count statistics
+                    if (currentScore >= 4) level4Count++;
+                    else if (currentScore >= 3) level3Count++;
+                    else if (currentScore >= 2) level2Count++;
+
+                    if (change > 0) improvedCount++;
+                    else if (change === 0) staticCount++;
+
+                    const scoreClasses = sub.scores.map(score => getScoreClass(score));
+
+                    let changeIndicator = '';
+                    if (change > 0) {
+                        changeIndicator = `<span class="improvement-badge">+${change}</span>`;
+                    } else if (change < 0) {
+                        changeIndicator = `<span class="decline-badge">${change}</span>`;
+                    } else {
+                        changeIndicator = `<span style="color: #7F8C8D; font-size: 0.8rem;">ไม่เปลี่ยนแปลง</span>`;
+                    }
+
+                    subCriteriaHtml += `
+                        <div class="sub-criterion-item">
+                            <div class="sub-criterion-header">
+                                <div class="sub-criterion-number">${sub.number}</div>
+                                <div class="sub-criterion-description">${sub.description}</div>
+                                <div class="sub-criterion-scores">
+                                    <span class="sub-score ${scoreClasses[0]}">${sub.scores[0]}</span>
+                                    <span class="sub-score ${scoreClasses[1]}">${sub.scores[1]}</span>
+                                    <span class="sub-score ${scoreClasses[2]}">${sub.scores[2]}</span>
+                                    ${changeIndicator}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                if (hasVisibleSubCriteria) {
+                    const mainScoreClass = criterion.scores[2] >= 4 ? 'score-excellent' :
+                        criterion.scores[2] >= 3 ? 'score-good' : 'score-improvement';
+
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <div class="card-icon">${criterion.number}</div>
+                            <div class="card-title">Criterion ${criterion.number}: ${criterion.name}</div>
+                        </div>
+                        <div class="criteria-scores" style="margin-bottom: 20px;">
+                            <span class="score-badge ${mainScoreClass}">${criterion.scores[2]}</span>
+                            <span style="color: #7F8C8D; font-size: 0.9rem;">(${criterion.subCriteria.length} หัวข้อย่อย)</span>
+                        </div>
+                        <div class="sub-criteria-container">
+                            ${subCriteriaHtml}
+                        </div>
+                    `;
+                    container.appendChild(card);
+                }
+            });
+
+            // Update statistics
+            document.getElementById('level4Count').textContent = level4Count;
+            document.getElementById('level3Count').textContent = level3Count;
+            document.getElementById('level2Count').textContent = level2Count;
+            document.getElementById('improvedCount').textContent = improvedCount;
+            document.getElementById('staticCount').textContent = staticCount;
+        }
+
+        function filterSubCriteria() {
+            renderSubCriteria();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeCharts();
+            renderSubCriteria();
+        });
+    </script>
+</body>
+
+</html>

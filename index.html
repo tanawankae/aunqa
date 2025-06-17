@@ -1,16 +1,14 @@
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 25px;">
-                <!-- High Priority -->
-                <div style="background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(231, 76, 60, 0.3);">
-                    <h4 style="font-family: 'Kanit', sans-serif; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid rgba(255,255,255,0.3);">🚨 สำคัญมาก (ไม่เคยพัฒน<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="แดชบอร์ดผลการประเมิน AUN-QA วิทยาลัยพยาบาลบรมราชชนนี ชัยนาท ปีการศึกษา 2565-2567">
     <title>ผลการประเมิน AUN-QA 2565-2567</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -681,11 +679,11 @@
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 25px;">
                 <!-- High Priority -->
                 <div style="background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(231, 76, 60, 0.3);">
-                    <h4 style="font-family: 'Kanit', sans-serif; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid rgba(255,255,255,0.3);"></h4>
+                    <h4 style="font-family: 'Kanit', sans-serif; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid rgba(255,255,255,0.3);">🚨 สำคัญมาก (ไม่มีการพัฒนา)</h4>
                     <div style="font-family: 'Sarabun', sans-serif;">
                         <div style="margin-bottom: 15px; padding: 10px 0;"><strong>Criterion 3:</strong> Teaching & Learning</div>
                         <div style="margin-bottom: 15px; padding: 10px 0;"><strong>Criterion 6:</strong> Student Support</div>
-                        <div style="opacity: 0.9; font-size: 0.95rem; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">ต้องดำเนินการทันที เพราะไม่เคยมีการปรับปรุง</div>
+                        <div style="opacity: 0.9; font-size: 0.95rem; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">ต้องดำเนินการทันที เพราะไม่มีการปรับปรุงตลอด 3 ปี</div>
                     </div>
                 </div>
 
@@ -714,7 +712,7 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-value" style="color: #e74c3c;">25%</div>
-                    <div class="stat-label">เกณฑ์ที่ไม่เคยพัฒนา (2/8)</div>
+                    <div class="stat-label">เกณฑ์ที่ไม่มีการพัฒนา (2/8)</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value" style="color: #f39c12;">12.5%</div>
@@ -840,6 +838,13 @@
                 plugins: {
                     legend: {
                         display: false
+                    },
+                    tooltip: {
+                        backgroundColor: blueTheme.dark,
+                        titleFont: { family: 'Kanit', size: 14, weight: 'bold' },
+                        bodyFont: { family: 'Sarabun', size: 12 },
+                        padding: 10,
+                        cornerRadius: 8
                     }
                 },
                 scales: {
@@ -852,6 +857,7 @@
                         ticks: {
                             stepSize: 1,
                             font: {
+                                family: 'Kanit',
                                 size: 12,
                                 weight: 'bold'
                             }
@@ -863,6 +869,7 @@
                         },
                         ticks: {
                             font: {
+                                family: 'Kanit',
                                 size: 12,
                                 weight: 'bold'
                             }
@@ -915,10 +922,18 @@
                         labels: {
                             usePointStyle: true,
                             font: {
+                                family: 'Kanit',
                                 size: 12,
                                 weight: 'bold'
                             }
                         }
+                    },
+                    tooltip: {
+                        backgroundColor: blueTheme.dark,
+                        titleFont: { family: 'Kanit', size: 14, weight: 'bold' },
+                        bodyFont: { family: 'Sarabun', size: 12 },
+                        padding: 10,
+                        cornerRadius: 8
                     }
                 },
                 scales: {
@@ -931,6 +946,7 @@
                         ticks: {
                             stepSize: 1,
                             font: {
+                                family: 'Kanit',
                                 size: 11,
                                 weight: 'bold'
                             }
@@ -942,6 +958,7 @@
                         },
                         ticks: {
                             font: {
+                                family: 'Kanit',
                                 size: 11,
                                 weight: 'bold'
                             }
@@ -983,6 +1000,13 @@
                 plugins: {
                     legend: {
                         display: false
+                    },
+                    tooltip: {
+                        backgroundColor: blueTheme.dark,
+                        titleFont: { family: 'Kanit', size: 14, weight: 'bold' },
+                        bodyFont: { family: 'Sarabun', size: 12 },
+                        padding: 10,
+                        cornerRadius: 8
                     }
                 },
                 scales: {
@@ -994,6 +1018,7 @@
                         ticks: {
                             stepSize: 0.5,
                             font: {
+                                family: 'Kanit',
                                 size: 12,
                                 weight: 'bold'
                             }
@@ -1005,6 +1030,7 @@
                         },
                         ticks: {
                             font: {
+                                family: 'Kanit',
                                 size: 10,
                                 weight: 'bold'
                             },

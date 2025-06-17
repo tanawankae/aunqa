@@ -162,31 +162,6 @@
             </div>
         </div>
 
-        <!-- Performance Heatmap -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-icon">🌡️</div>
-                <div class="card-title">Heatmap แสดงประสิทธิภาพหัวข้อย่อยแต่ละเกณฑ์</div>
-            </div>
-            <div id="performanceHeatmap" style="margin: 25px 0;">
-                <!-- Will be populated by JavaScript -->
-            </div>
-            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 20px; height: 20px; background: #27ae60; border-radius: 4px;"></div>
-                    <span style="font-family: 'Sarabun', sans-serif; font-size: 0.9rem;">ระดับ 4 (ดีเยี่ยม)</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 20px; height: 20px; background: #f39c12; border-radius: 4px;"></div>
-                    <span style="font-family: 'Sarabun', sans-serif; font-size: 0.9rem;">ระดับ 3 (ดี)</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 20px; height: 20px; background: #e74c3c; border-radius: 4px;"></div>
-                    <span style="font-family: 'Sarabun', sans-serif; font-size: 0.9rem;">ระดับ 2-1 (ต้องปรับปรุง)</span>
-                </div>
-            </div>
-        </div>
-
         <!-- Sub-criteria Details -->
         <div id="subCriteriaContainer">
             <!-- Will be populated by JavaScript -->
@@ -311,7 +286,6 @@
             createScoreDistributionChart();
             createImprovementTrendChart();
             createCriterionComparisonChart();
-            createPerformanceHeatmap();
         }
 
         function createScoreDistributionChart() {
@@ -470,37 +444,6 @@
                     }
                 }
             });
-        }
-
-        function createPerformanceHeatmap() {
-            const container = document.getElementById('performanceHeatmap');
-            let heatmapHtml = '<div class="heatmap-grid" style="grid-template-columns: auto repeat(' +
-                Math.max(...aunqaData.map(c => c.subCriteria.length)) + ', 1fr);">';
-
-            // Header row
-            heatmapHtml += '<div class="heatmap-header">เกณฑ์</div>';
-            const maxSubCriteria = Math.max(...aunqaData.map(c => c.subCriteria.length));
-            for (let i = 1; i <= maxSubCriteria; i++) {
-                heatmapHtml += `<div class="heatmap-header">หัวข้อ ${i}</div>`;
-            }
-
-            // Data rows
-            aunqaData.forEach(criterion => {
-                heatmapHtml += `<div class="heatmap-label">C${criterion.number}: ${criterion.name.substring(0, 20)}...</div>`;
-
-                criterion.subCriteria.forEach(sub => {
-                    const score = sub.scores[2];
-                    heatmapHtml += `<div class="heatmap-cell score-${score}" title="${sub.description}">${score}</div>`;
-                });
-
-                // Fill empty cells if needed
-                for (let i = criterion.subCriteria.length; i < maxSubCriteria; i++) {
-                    heatmapHtml += '<div class="heatmap-cell" style="background: #f8f9fa; color: #ccc;">-</div>';
-                }
-            });
-
-            heatmapHtml += '</div>';
-            container.innerHTML = heatmapHtml;
         }
 
         function getScoreClass(score) {
